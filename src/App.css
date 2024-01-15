@@ -1,38 +1,52 @@
-.App {
-  text-align: center;
+
+
+body {
+  background-color: #CEFDFF;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#column-wrapper {
+  display: grid;
+  grid-template-columns: 4fr minmax(25rem, 3fr);
+  grid-template-areas: 
+  'cookie upgrades';
+  width: 100vw;
+  height: 100vh;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#cookie-box {
+  grid-area: cookie;
+  background-color: #F9B9B7;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+}
+
+#upgrade-box{
+  grid-area: upgrades;
+}
+
+#cookie-image{
+  height: 45vh;
+  width: 45vh;
+}
+
+#cookie-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cookie-text{
+  color:white;
+  font-size: 3rem;
+}
+
+.producer-container{
+  background-color: #507DBC;
+  margin: 3rem;
+  height: auto;
+  width: auto;
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
