@@ -13,7 +13,7 @@ function CookieApp() {
         <Cookie NumCookies={CookieCount} CookieIncrease={setCookie} CPS={CookiesPerSecond}></Cookie>
       </div>
       <div id="upgrade-box">
-        <CookieProducer NumCookies={CookieCount} CookieDecrease={setCookie} ></CookieProducer>
+        <CookieProducer NumCookies={CookieCount} CookieDecrease={setCookie} CPS={CookiesPerSecond} CPSModify={setCookiesPerSecond}></CookieProducer>
       </div>
     </div>
   );
