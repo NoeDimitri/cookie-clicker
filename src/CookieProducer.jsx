@@ -1,7 +1,7 @@
 import './App.css';
 // import { useState } from 'react';
 
-function CookieProducer({NumCookies, CookieDecrease, CPS, CPSModify}){
+function CookieProducer({NumCookies, CookieDecrease, CPSModify}){
 
     // const [canPurchase, setCanPurchase] = useState(true);
     
@@ -12,10 +12,10 @@ function CookieProducer({NumCookies, CookieDecrease, CPS, CPSModify}){
     // }
 
     function purchaseProducer(event){
-        if (NumCookies >= 1)
+        if (NumCookies >= 5)
         {
-            CookieDecrease(NumCookies - 1);
-            CPSModify(CPS + 1);
+            CookieDecrease(NumCookies - 5);
+            CPSModify('cursor');
         }
     };
 
