@@ -29,10 +29,10 @@ function CookieProducer({Producer, NumCookies, CookieDecrease, CPSModify}){
                     {Producer.name}
                 </div>
                 <div class="producer-info-child">
-                    Number Owned: {Producer.quantity}
+                    Price: {Producer.price}
                 </div>
                 <div class="producer-info-child" style={{textAlign:"right"}}>
-                    {Producer.price}
+                    {Producer.quantity}
                 </div>
             </div>
         </div>

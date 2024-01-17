@@ -53,7 +53,7 @@ function CookieApp() {
   const [CookieCount, setCookie] = useState(0);
   const [Producers, dispatch] = useImmerReducer(ProducerReducer, initialProducers);
 
-  var producerList = initialProducers.map(producer => 
+  var producerList = Producers.map(producer => 
     <CookieProducer 
       Producer={producer} 
       quantity={producer.quantity}
