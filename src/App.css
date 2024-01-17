@@ -31,6 +31,10 @@ body {
   width: 45vh;
 }
 
+#cookie-image:active {
+  scale: 110%;
+}
+
 #cookie-container{
   display: flex;
   flex-direction: column;
@@ -49,7 +53,14 @@ body {
   height: auto;
   width: auto;
   color: white;
+
+  transition: background-color 0.3s;
 }
+
+.producer-container:hover{
+  background-color: #6461A0;
+}
+
 
 .cannot-purchase{
   opacity: 30%;
