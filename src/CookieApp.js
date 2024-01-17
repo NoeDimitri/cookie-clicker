@@ -81,6 +81,8 @@ function CookieApp() {
   const [CookieCount, setCookie] = useState(0);
   const [Producers, dispatch] = useImmerReducer(ProducerReducer, initialProducers);
 
+  const version = "1.00"
+
   var producerList = Producers.map(producer => 
     <CookieProducer 
       key={producer.id}
@@ -97,13 +99,6 @@ function CookieApp() {
       producerName: producerPurchased,
       cost: cost
     });
-  }
-
-  function handleLoadingSave(previousSave){
-    dispatch({
-      type: 'loadSave',
-      producerSave: previousSave
-    })
   }
 
   function calculateCPS(producers){
@@ -124,22 +119,36 @@ function CookieApp() {
 
   // Load old save
   useEffect(()=>{
-    // Update the producer quantities
-    if(localStorage.getItem('producerSave'))
-      handleLoadingSave(JSON.parse(localStorage.getItem('producerSave')));
     
-    if (localStorage.getItem('NumCookies'))
+    function handleLoadingSave(previousSave){
+      dispatch({
+        type: 'loadSave',
+        producerSave: previousSave
+      })
+    }
+
+    // Check if version matches
+    if (JSON.parse(localStorage.getItem('version')) === version)
     {
-      if (localStorage.getItem('previousDate') && localStorage.getItem('producerSave')){
-        let elapsedSeconds = Math.ceil((Date.now() - JSON.parse(localStorage.getItem('previousDate'))) / 1000);
-        let cookieGain = elapsedSeconds * calculateCPS(JSON.parse(localStorage.getItem('producerSave')));
-        setCookie(JSON.parse(localStorage.getItem('NumCookies')) + cookieGain);
-      }
-      else{
-        setCookie(JSON.parse(localStorage.getItem('NumCookies')));
+      // Update the producer quantities
+      if(localStorage.getItem('producerSave'))
+        handleLoadingSave(JSON.parse(localStorage.getItem('producerSave')));
+      
+      // Ensure we have valid number of cookies
+      if (localStorage.getItem('NumCookies'))
+      {
+        // Calculate Cookies gained since login (if possible)
+        if (localStorage.getItem('previousDate') && localStorage.getItem('producerSave')){
+          let elapsedSeconds = Math.ceil((Date.now() - JSON.parse(localStorage.getItem('previousDate'))) / 1000);
+          let cookieGain = elapsedSeconds * calculateCPS(JSON.parse(localStorage.getItem('producerSave')));
+          setCookie(JSON.parse(localStorage.getItem('NumCookies')) + cookieGain);
+        }
+        else{
+          setCookie(JSON.parse(localStorage.getItem('NumCookies')));
+        }
       }
     }
-    },[]);
+    }, [dispatch]);
 
   // Save State before browser cuts out
   useEffect(() => {
@@ -154,6 +163,7 @@ function CookieApp() {
       localStorage.setItem("NumCookies", JSON.stringify(CookieCount));
       localStorage.setItem("producerSave", JSON.stringify(producerSave))
       localStorage.setItem("previousDate", JSON.stringify(Date.now()))
+      localStorage.setItem("version", JSON.stringify(version))
     }
     window.addEventListener("beforeunload", saveState);
   })
