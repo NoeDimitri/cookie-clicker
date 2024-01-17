@@ -1,27 +1,42 @@
 import './App.css';
 // import { useState } from 'react';
 
-function CookieProducer({NumCookies, CookieDecrease, CPS, CPSModify}){
-
-    // const [canPurchase, setCanPurchase] = useState(true);
+function CookieProducer({Producer, NumCookies, CookieDecrease, CPSModify}){
     
     let producerClass = "producer-container"
 
-    // if (!canPurchase) {
-    //     producerClass += " cannot-purchase";
-    // }
+    let current_price = Math.ceil(Producer.basePrice * 1.15 ** Producer.quantity);
+
+    if (NumCookies >= current_price)
+    {
+        producerClass += " purchasable"
+    }
+    else
+    {
+        producerClass += " not-purchasable"
+    }
 
     function purchaseProducer(event){
-        if (NumCookies >= 1)
+        if (NumCookies >= current_price)
         {
-            CookieDecrease(NumCookies - 1);
-            CPSModify(CPS + 1);
+            CookieDecrease(NumCookies - current_price);
+            CPSModify(Producer.name);
         }
     };
 
     return(
         <div className={producerClass} onClick={purchaseProducer}>
-            Purchase tiny CPS upgrade
+            <div className="producer-info">
+                <div className="producer-info-child">
+                    {Producer.name}
+                </div>
+                <div className="producer-info-child">
+                    Price: {current_price}
+                </div>
+                <div className="producer-info-child" style={{textAlign:"right"}}>
+                    {Producer.quantity}
+                </div>
+            </div>
         </div>
     );
 
