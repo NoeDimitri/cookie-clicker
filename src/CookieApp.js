@@ -82,8 +82,8 @@ function CookieApp() {
   // This thing is the timer that updates the cookies on intervals
   useEffect(() => {
     const myInterval = setInterval(() => {
-      setCookie(CookieCount + calculateCPS(Producers));
-    }, 1000);
+      setCookie(CookieCount + calculateCPS(Producers)/10);
+    }, 100);
     return () => clearInterval(myInterval); 
   }, [CookieCount, Producers]);
 

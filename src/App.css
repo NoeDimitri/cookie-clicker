@@ -68,16 +68,19 @@ body {
   height: auto;
   width: auto;
   color: white;
-
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
-.producer-container:hover{
+.producer-container.purchasable:active{
+  transform: scale(103%);
+}
+
+.producer-container.purchasable:hover{
   background-color: #6461A0;
+  cursor: pointer;
 }
 
-
-.cannot-purchase{
+.producer-container.not-purchasable{
   opacity: 30%;
 }
 

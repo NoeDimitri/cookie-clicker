@@ -5,6 +5,15 @@ function CookieProducer({Producer, NumCookies, CookieDecrease, CPSModify}){
     
     let producerClass = "producer-container"
 
+    if (NumCookies >= Producer.price)
+    {
+        producerClass += " purchasable"
+    }
+    else
+    {
+        producerClass += " not-purchasable"
+    }
+
     function purchaseProducer(event){
         if (NumCookies >= Producer.price)
         {
@@ -14,7 +23,7 @@ function CookieProducer({Producer, NumCookies, CookieDecrease, CPSModify}){
     };
 
     return(
-        <div className={producerClass} onClick={purchaseProducer}>
+        <div class={producerClass} onClick={purchaseProducer}>
             <div class="producer-info">
                 <div class="producer-info-child">
                     {Producer.name}
