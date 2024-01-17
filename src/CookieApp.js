@@ -14,7 +14,18 @@ function ProducerReducer(draft, action)
         throw Error('Producer name ' + action.producerName + ' not recognized.');
       }
       draft[index]['quantity'] += 1;
-      draft[index]['price'] = Math.floor(draft[index]['price']*1.3**draft[index]['quantity']);
+      break;
+    }
+    case 'loadSave':{
+      action.producerSave.forEach((save) => {
+        const index = draft.findIndex((producer) => save.id === producer.id);
+        if(index === -1)
+        {
+          return;
+        }
+        draft[index]['quantity'] = save.quantity;
+      }
+      );
       break;
     }
     default: {
@@ -27,7 +38,7 @@ let initialProducers = [
   {
     id: 0,
     name: "Cursor",
-    price: 5,
+    basePrice: 5,
     CPS: 0.1,
     imagePath: "",
     quantity: 0,
@@ -35,15 +46,15 @@ let initialProducers = [
   {
     id: 1,
     name: "Oven",
-    price: 5,
-    CPS: 3,
+    basePrice: 30,
+    CPS: 1,
     imagePath: "",
     quantity: 0,
   },
   {
     id: 2,
     name: "Bakery",
-    price: 150,
+    basePrice: 150,
     CPS: 10,
     imagePath: "",
     quantity: 0,
@@ -51,7 +62,7 @@ let initialProducers = [
   {
     id: 3,
     name: "Factory",
-    price: 1000,
+    basePrice: 1000,
     CPS: 25,
     imagePath: "",
     quantity: 0,
@@ -59,7 +70,7 @@ let initialProducers = [
   {
     id: 4,
     name: "King Cheebo",
-    price: 20000,
+    basePrice: 20000,
     CPS: 100,
     imagePath: "",
     quantity: 0,
@@ -74,8 +85,7 @@ function CookieApp() {
     <CookieProducer 
       key={producer.id}
       Producer={producer} 
-      quantity={producer.quantity}
-      NumCookies={CookieCount} 
+      NumCookies={CookieCount}
       CookieDecrease={setCookie} 
       CPSModify={handlePurchaseProducer}>
     </CookieProducer>
@@ -87,6 +97,13 @@ function CookieApp() {
       producerName: producerPurchased,
       cost: cost
     });
+  }
+
+  function handleLoadingSave(previousSave){
+    dispatch({
+      type: 'loadSave',
+      producerSave: previousSave
+    })
   }
 
   function calculateCPS(producers){
@@ -104,6 +121,29 @@ function CookieApp() {
     }, 100);
     return () => clearInterval(myInterval); 
   }, [CookieCount, Producers]);
+
+  // Load old save
+  useEffect(()=>{
+    if(localStorage.getItem('producerSave'))
+      handleLoadingSave(JSON.parse(localStorage.getItem('producerSave')));
+    if (localStorage.getItem('NumCookies'))
+      setCookie(JSON.parse(localStorage.getItem('NumCookies')));
+    },[]);
+
+  // Save State before browser cuts out
+  useEffect(() => {
+    const saveState = (ev) => {
+      let producerSave = Producers.map((producer) => {
+        return {
+          id: producer.id,
+          quantity: producer.quantity
+        }
+      })
+      localStorage.setItem("NumCookies", JSON.stringify(CookieCount));
+      localStorage.setItem("producerSave", JSON.stringify(producerSave))
+    }
+    window.addEventListener("beforeunload", saveState);
+  })
 
   return (
     <div id="column-wrapper">

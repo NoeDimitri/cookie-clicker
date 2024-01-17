@@ -5,7 +5,9 @@ function CookieProducer({Producer, NumCookies, CookieDecrease, CPSModify}){
     
     let producerClass = "producer-container"
 
-    if (NumCookies >= Producer.price)
+    let current_price = Math.ceil(Producer.basePrice * 1.15 ** Producer.quantity);
+
+    if (NumCookies >= current_price)
     {
         producerClass += " purchasable"
     }
@@ -15,9 +17,9 @@ function CookieProducer({Producer, NumCookies, CookieDecrease, CPSModify}){
     }
 
     function purchaseProducer(event){
-        if (NumCookies >= Producer.price)
+        if (NumCookies >= current_price)
         {
-            CookieDecrease(NumCookies - Producer.price);
+            CookieDecrease(NumCookies - current_price);
             CPSModify(Producer.name);
         }
     };
@@ -29,7 +31,7 @@ function CookieProducer({Producer, NumCookies, CookieDecrease, CPSModify}){
                     {Producer.name}
                 </div>
                 <div className="producer-info-child">
-                    Price: {Producer.price}
+                    Price: {current_price}
                 </div>
                 <div className="producer-info-child" style={{textAlign:"right"}}>
                     {Producer.quantity}
