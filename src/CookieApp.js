@@ -124,10 +124,21 @@ function CookieApp() {
 
   // Load old save
   useEffect(()=>{
+    // Update the producer quantities
     if(localStorage.getItem('producerSave'))
       handleLoadingSave(JSON.parse(localStorage.getItem('producerSave')));
+    
     if (localStorage.getItem('NumCookies'))
-      setCookie(JSON.parse(localStorage.getItem('NumCookies')));
+    {
+      if (localStorage.getItem('previousDate') && localStorage.getItem('producerSave')){
+        let elapsedSeconds = Math.ceil((Date.now() - JSON.parse(localStorage.getItem('previousDate'))) / 1000);
+        let cookieGain = elapsedSeconds * calculateCPS(JSON.parse(localStorage.getItem('producerSave')));
+        setCookie(JSON.parse(localStorage.getItem('NumCookies')) + cookieGain);
+      }
+      else{
+        setCookie(JSON.parse(localStorage.getItem('NumCookies')));
+      }
+    }
     },[]);
 
   // Save State before browser cuts out
@@ -136,11 +147,13 @@ function CookieApp() {
       let producerSave = Producers.map((producer) => {
         return {
           id: producer.id,
-          quantity: producer.quantity
+          quantity: producer.quantity,
+          CPS: producer.CPS
         }
       })
       localStorage.setItem("NumCookies", JSON.stringify(CookieCount));
       localStorage.setItem("producerSave", JSON.stringify(producerSave))
+      localStorage.setItem("previousDate", JSON.stringify(Date.now()))
     }
     window.addEventListener("beforeunload", saveState);
   })
