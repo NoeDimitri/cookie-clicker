@@ -14,6 +14,7 @@ function ProducerReducer(draft, action)
         throw Error('Producer name ' + action.producerName + ' not recognized.');
       }
       draft[index]['quantity'] += 1;
+      draft[index]['price'] = Math.floor(draft[index]['price']*1.3**draft[index]['quantity']);
       break;
     }
     default: {
@@ -25,25 +26,41 @@ function ProducerReducer(draft, action)
 let initialProducers = [
   {
     id: 0,
-    name: "cursor",
+    name: "Cursor",
     price: 5,
-    CPS: 1,
+    CPS: 0.1,
     imagePath: "",
     quantity: 0,
   },
   {
     id: 1,
-    name: "oven",
-    price: 20,
+    name: "Oven",
+    price: 5,
     CPS: 3,
     imagePath: "",
     quantity: 0,
   },
   {
     id: 2,
-    name: "bakery",
+    name: "Bakery",
     price: 150,
     CPS: 10,
+    imagePath: "",
+    quantity: 0,
+  },
+  {
+    id: 3,
+    name: "Factory",
+    price: 1000,
+    CPS: 25,
+    imagePath: "",
+    quantity: 0,
+  },
+  {
+    id: 4,
+    name: "King Cheebo",
+    price: 20000,
+    CPS: 100,
     imagePath: "",
     quantity: 0,
   }
@@ -55,6 +72,7 @@ function CookieApp() {
 
   var producerList = Producers.map(producer => 
     <CookieProducer 
+      key={producer.id}
       Producer={producer} 
       quantity={producer.quantity}
       NumCookies={CookieCount} 

@@ -23,15 +23,15 @@ function CookieProducer({Producer, NumCookies, CookieDecrease, CPSModify}){
     };
 
     return(
-        <div class={producerClass} onClick={purchaseProducer}>
-            <div class="producer-info">
-                <div class="producer-info-child">
+        <div className={producerClass} onClick={purchaseProducer}>
+            <div className="producer-info">
+                <div className="producer-info-child">
                     {Producer.name}
                 </div>
-                <div class="producer-info-child">
+                <div className="producer-info-child">
                     Price: {Producer.price}
                 </div>
-                <div class="producer-info-child" style={{textAlign:"right"}}>
+                <div className="producer-info-child" style={{textAlign:"right"}}>
                     {Producer.quantity}
                 </div>
             </div>
