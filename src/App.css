@@ -54,3 +54,13 @@ body {
 .cannot-purchase{
   opacity: 30%;
 }
+
+.producer-info{
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+}
+
+.producer-info-child{
+  flex: 1;
+}

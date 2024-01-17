@@ -15,18 +15,6 @@ function ProducerReducer(draft, action)
       }
       draft[index]['quantity'] += 1;
       break;
-      // return Producers.map((producer) => {
-      //   if (producer.name == action.producerName){
-      //     producerUpdated = {};
-      //     Object.assign(producerUpdated, producer);
-      //     producerUpdated['quantity'] += 1;
-      //     return producerUpdated
-      //   }
-      //   else
-      //   {
-      //     return producer;
-      //   }
-      // })
     }
     default: {
       throw Error('unknown action: ' + action.type)
@@ -36,9 +24,26 @@ function ProducerReducer(draft, action)
 
 let initialProducers = [
   {
+    id: 0,
     name: "cursor",
     price: 5,
     CPS: 1,
+    imagePath: "",
+    quantity: 0,
+  },
+  {
+    id: 1,
+    name: "oven",
+    price: 20,
+    CPS: 3,
+    imagePath: "",
+    quantity: 0,
+  },
+  {
+    id: 2,
+    name: "bakery",
+    price: 150,
+    CPS: 10,
     imagePath: "",
     quantity: 0,
   }
@@ -47,6 +52,16 @@ let initialProducers = [
 function CookieApp() {
   const [CookieCount, setCookie] = useState(0);
   const [Producers, dispatch] = useImmerReducer(ProducerReducer, initialProducers);
+
+  var producerList = initialProducers.map(producer => 
+    <CookieProducer 
+      Producer={producer} 
+      quantity={producer.quantity}
+      NumCookies={CookieCount} 
+      CookieDecrease={setCookie} 
+      CPSModify={handlePurchaseProducer}>
+    </CookieProducer>
+  );
 
   function handlePurchaseProducer(producerPurchased, cost){
     dispatch({
@@ -78,7 +93,7 @@ function CookieApp() {
         <Cookie NumCookies={CookieCount} CookieIncrease={setCookie} CPS={calculateCPS(Producers)}></Cookie>
       </div>
       <div id="upgrade-box">
-        <CookieProducer NumCookies={CookieCount} CookieDecrease={setCookie} CPSModify={handlePurchaseProducer}></CookieProducer>
+        {producerList}
       </div>
     </div>
   );
