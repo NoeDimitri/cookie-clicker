@@ -2,6 +2,7 @@
 
 body {
   background-color: #CEFDFF;
+  overflow: hidden;
 }
 
 #column-wrapper {
@@ -24,4 +25,5 @@ body {
 
 #upgrade-box{
   grid-area: upgrades;
+  overflow: auto;
 }
