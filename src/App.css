@@ -8,8 +8,9 @@ body {
 #column-wrapper {
   display: grid;
   grid-template-columns: 4fr minmax(25rem, 3fr);
-  grid-template-areas: 
-  'cookie upgrades';
+  grid-template-rows: 1fr 2fr;
+  grid-template-areas:  'cookie upgrade' 
+                        'cookie producer';
   width: 100vw;
   height: 100vh;
 }
@@ -24,6 +25,10 @@ body {
 }
 
 #upgrade-box{
-  grid-area: upgrades;
+  grid-area: upgrade;
+}
+
+#producer-box{
+  grid-area: producer;
   overflow: auto;
 }

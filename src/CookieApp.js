@@ -1,5 +1,6 @@
 import './App.css';
 import Cookie from './cookie';
+import Upgrade from './upgrade.jsx';
 import CookieProducer from './CookieProducer';
 import { useState, useEffect } from 'react';
 import { useImmerReducer } from 'use-immer';
@@ -101,6 +102,9 @@ function CookieApp() {
         <Cookie NumCookies={CookieCount} CookieIncrease={setCookie} CPS={calculateCPS(Producers)}></Cookie>
       </div>
       <div id="upgrade-box">
+        <Upgrade></Upgrade>
+      </div>
+      <div id="producer-box">
         {producerList}
       </div>
     </div>

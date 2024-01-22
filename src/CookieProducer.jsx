@@ -32,7 +32,7 @@ function CookieProducer({Producer, NumCookies, CookieDecrease, CPSModify}){
                     {Producer.name}
                 </div>
                 <div className="producer-info-child">
-                    Price: {current_price}
+                    Price: {current_price.toLocaleString('en', {useGrouping:true})}
                 </div>
                 <div className="producer-info-child" style={{textAlign:"right"}}>
                     {Producer.quantity}
