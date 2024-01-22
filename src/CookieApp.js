@@ -8,7 +8,7 @@ import { initialProducers, ProducerReducer} from './ProducerReducer.jsx';
 function CookieApp() {
   const [CookieCount, setCookie] = useState(0);
   const [Producers, dispatch] = useImmerReducer(ProducerReducer, initialProducers);
-  const version = "1.02"
+  const version = "1.01"
 
   var producerList = Producers.map(producer => 
     <CookieProducer 
@@ -90,7 +90,7 @@ function CookieApp() {
       localStorage.setItem("NumCookies", JSON.stringify(CookieCount));
       localStorage.setItem("producerSave", JSON.stringify(producerSave))
       localStorage.setItem("previousDate", JSON.stringify(Date.now()))
-      // localStorage.setItem("version", JSON.stringify(version))
+      localStorage.setItem("version", JSON.stringify(version))
     }
     window.addEventListener("beforeunload", saveState);
   })
