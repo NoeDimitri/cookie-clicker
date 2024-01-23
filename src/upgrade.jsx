@@ -1,10 +1,10 @@
 import './upgrade.css'
 
-function Upgrade({upgradeInfo}){
+function Upgrade({upgradeInfo, CookieNum}){
     
     return(
         <div id="upgrade-container">
-                yes
+                {upgradeInfo.name}
         </div>
     );
 

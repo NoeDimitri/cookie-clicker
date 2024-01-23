@@ -1,5 +1,3 @@
-import { useImmerReducer } from 'use-immer';
-
 export function ProducerReducer(draft, action)
 {
   switch (action.type){
@@ -20,6 +18,8 @@ export function ProducerReducer(draft, action)
           return;
         }
         draft[index]['quantity'] = save.quantity;
+        draft[index]['multiplier'] = save.multiplier;
+
       }
       );
       break;
@@ -30,12 +30,13 @@ export function ProducerReducer(draft, action)
   }
 }
 
-export let initialProducers = [
+export let producerData = [
     {
       id: 0,
       name: "Cursor",
       basePrice: 5,
       CPS: 0.1,
+      multiplier: 1.0,
       imagePath: "",
       quantity: 0,
     },
@@ -44,6 +45,7 @@ export let initialProducers = [
       name: "Oven",
       basePrice: 30,
       CPS: 1,
+      multiplier: 1.0,
       imagePath: "",
       quantity: 0,
     },
@@ -52,6 +54,7 @@ export let initialProducers = [
       name: "Bakery",
       basePrice: 150,
       CPS: 10,
+      multiplier: 1.0,
       imagePath: "",
       quantity: 0,
     },
@@ -60,6 +63,7 @@ export let initialProducers = [
       name: "Factory",
       basePrice: 1000,
       CPS: 25,
+      multiplier: 1.0,
       imagePath: "",
       quantity: 0,
     },
@@ -68,6 +72,7 @@ export let initialProducers = [
       name: "King Cheebo",
       basePrice: 20000,
       CPS: 100,
+      multiplier: 1.0,
       imagePath: "",
       quantity: 0,
     }
