@@ -2,6 +2,7 @@
 
 body {
   background-color: #CEFDFF;
+  overflow: hidden;
 }
 
 #column-wrapper {
@@ -24,72 +25,5 @@ body {
 
 #upgrade-box{
   grid-area: upgrades;
-}
-
-#cookie-image{
-  height: 45vh;
-  width: 45vh;
-}
-
-#cookie-image:active {
-  scale: 110%;
-}
-
-#cookie-container{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.cookie-text{
-  color: #8E443D;
-  font-size: 3rem;
-}
-
-@keyframes rotate {
-  from{
-    transform: rotate(0);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.animation-rotate{
-  animation-name: rotate;
-  animation: rotate 15s linear infinite;
-}
-
-.producer-container{
-  background-color: #507DBC;
-  margin: 3rem;
-  height: auto;
-  width: auto;
-  color: white;
-  transition: background-color 0.3s, transform 0.2s;
-}
-
-.producer-container.purchasable:active{
-  transform: scale(103%);
-}
-
-.producer-container.purchasable:hover{
-  background-color: #6461A0;
-  cursor: pointer;
-}
-
-.producer-container.not-purchasable{
-  opacity: 30%;
-}
-
-.producer-info{
-  display: flex;
-  flex-direction: row;
-  padding: 1rem;
-}
-
-.producer-info-child{
-  flex: 1;
+  overflow: auto;
 }

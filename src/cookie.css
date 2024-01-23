@@ -1,0 +1,35 @@
+#cookie-image{
+    height: 45vh;
+    width: 45vh;
+  }
+  
+#cookie-image:active {
+scale: 110%;
+}
+
+#cookie-container{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+.cookie-text{
+color: #8E443D;
+font-size: 3rem;
+}
+
+@keyframes rotate {
+from{
+    transform: rotate(0);
+}
+
+to {
+    transform: rotate(360deg);
+}
+}
+
+.animation-rotate{
+animation-name: rotate;
+animation: rotate 15s linear infinite;
+}
