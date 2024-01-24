@@ -1,13 +1,14 @@
 import './App.css';
 import Cookie from './cookie';
-import Upgrade from './upgrade.jsx';
 import CookieProducer from './CookieProducer';
 import { upgradeInfo } from './upgradeInfo.jsx';
 import { useState, useEffect, createContext } from 'react';
 import { useImmerReducer } from 'use-immer';
 import { producerData, ProducerReducer} from './ProducerReducer.jsx';
+import UpgradeContainer from './upgradeContainer.jsx';
 
-const PurchasedUpgrades = createContext(new Set());
+export const PurchasedUpgrades = createContext();
+export const NumCookiesContext = createContext();
 
 function CookieApp() {
   const [CookieCount, setCookie] = useState(0);
@@ -15,7 +16,7 @@ function CookieApp() {
   const [upgrades, setUpgrades] = useState(new Set());
   const [availableUpgrades, setAvailableUpgrades] = useState(new Set());
 
-  const version = "1.01";
+  const version = "1.02";
   const CPSRefreshRate = 100;
 
   var producerList = Producers.map(producer => 
@@ -44,6 +45,7 @@ function CookieApp() {
     return CPS;
   }
 
+  // Every cookie update, update what upgrades you can purchase
   useEffect(() => {
     let newSet = availableUpgrades;
     upgradeInfo.forEach(upgrade => {
@@ -93,6 +95,9 @@ function CookieApp() {
           setCookie(JSON.parse(localStorage.getItem('NumCookies')));
         }
       }
+      if (localStorage.getItem('purchasedUpgrades')){
+        setUpgrades(new Set(JSON.parse(localStorage.getItem('purchasedUpgrades'))));
+      }
     }
     }, [dispatch]);
 
@@ -108,9 +113,10 @@ function CookieApp() {
         }
       })
       localStorage.setItem("NumCookies", JSON.stringify(CookieCount));
-      localStorage.setItem("producerSave", JSON.stringify(producerSave))
-      localStorage.setItem("previousDate", JSON.stringify(Date.now()))
-      localStorage.setItem("version", JSON.stringify("dev mode"))
+      localStorage.setItem("producerSave", JSON.stringify(producerSave));
+      localStorage.setItem("purchasedUpgrades", JSON.stringify([...upgrades]));
+      localStorage.setItem("previousDate", JSON.stringify(Date.now()));
+      localStorage.setItem("version", JSON.stringify("1.01"));
     }
     window.addEventListener("beforeunload", saveState);
   })
@@ -118,18 +124,24 @@ function CookieApp() {
   //#endregion
 
   return (
-    <PurchasedUpgrades.Provider value={{upgrades, setUpgrades}}>
-      <div id="column-wrapper">
-        <div id="cookie-box">
-          <Cookie NumCookies={CookieCount} CookieIncrease={setCookie} CPS={calculateCPS(Producers)}></Cookie>
+    <NumCookiesContext.Provider value={{
+      CookieCount,
+      setCookie
+      }}>
+      <PurchasedUpgrades.Provider value={{upgrades, setUpgrades}}>
+        <div id="column-wrapper">
+          <div id="cookie-box">
+            <Cookie CPS={calculateCPS(Producers)}></Cookie>
+          </div>
+          <div id="upgrade-box">
+            <UpgradeContainer upgradeList={availableUpgrades}></UpgradeContainer>
+          </div>
+          <div id="producer-box">
+            {producerList}
+          </div>
         </div>
-        <div id="upgrade-box">
-        </div>
-        <div id="producer-box">
-          {producerList}
-        </div>
-      </div>
-    </ PurchasedUpgrades.Provider>
+      </ PurchasedUpgrades.Provider>
+    </NumCookiesContext.Provider>
   );
 }
 

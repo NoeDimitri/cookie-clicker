@@ -19,4 +19,14 @@ export const upgradeInfo = [
         cookieThreshold: 6,
         price: 5000
     },
+    {
+        id: 2,
+        name: "slave labor",
+        description: ":000",
+        relatedProducer: 2,
+        multiplier: 0.5,
+        srcImage: "PLACEHOLDER",
+        cookieThreshold: 10,
+        price: 100000
+    },
 ]

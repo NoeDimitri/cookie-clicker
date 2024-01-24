@@ -1,6 +1,6 @@
 import './upgrade.css'
 
-function Upgrade({upgradeInfo, CookieNum}){
+function Upgrade({upgradeInfo}){
     
     return(
         <div id="upgrade-container">
