@@ -22,9 +22,7 @@ function CookieApp() {
   var producerList = Producers.map(producer => 
     <CookieProducer 
       key={producer.id}
-      Producer={producer} 
-      NumCookies={CookieCount}
-      CookieDecrease={setCookie} 
+      Producer={producer}  
       CPSModify={handlePurchaseProducer}>
     </CookieProducer>
   );
