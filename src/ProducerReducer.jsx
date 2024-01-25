@@ -2,12 +2,21 @@ export function ProducerReducer(draft, action)
 {
   switch (action.type){
     case 'producerPurchase': {
-      const index = draft.findIndex((producer) => producer.name === action.producerName)
+      const index = draft.findIndex((producer) => producer.id === action.producerId)
       if (index === -1)
       {
-        throw Error('Producer name ' + action.producerName + ' not recognized.');
+        throw Error('Producer name ' + action.producerId + ' not recognized.');
       }
       draft[index]['quantity'] += 1;
+      break;
+    }
+    case 'increaseMultiplier':{
+      const index = draft.findIndex((producer) => producer.id === action.producerId)
+      if (index === -1)
+      {
+        throw Error('Producer id ' + action.producerId + ' not recognized.');
+      }
+      draft[index]['multiplier'] += action.multiplier;
       break;
     }
     case 'loadSave':{

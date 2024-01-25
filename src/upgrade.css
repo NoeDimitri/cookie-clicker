@@ -27,7 +27,7 @@
     align-items: center;
     justify-content: center;    
     padding: 0.5rem 0.5rem;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, scale 0.1s;
 }
 
 #upgrade-image{
@@ -40,6 +40,11 @@
     background-color: #6461A0;
     cursor: pointer;
 }
+
+.upgrade-box:active{
+    transform: scale(103%);
+  }
+
 
 .upgrade-box:hover #upgrade-image{
     opacity: 50%;

@@ -25,7 +25,7 @@ function CookieProducer({Producer, CPSModify}){
         if (CookieCount >= current_price)
         {
             setCookie(CookieCount - current_price);
-            CPSModify(Producer.name);
+            CPSModify(Producer.id);
         }
     };
 

@@ -6,7 +6,7 @@ import { NumCookiesContext } from './CookieApp';
 
 function Cookie({CPS}){
 
-    const {CookieCount, setCookie} = useContext(NumCookiesContext)
+    const {CookieCount, setCookie} = useContext(NumCookiesContext);
 
     function roundNumber(num){
         return (Math.round(num * 100) / 100).toFixed(1);
@@ -17,7 +17,7 @@ function Cookie({CPS}){
             <span className="cookie-text">
             {CookieCount !== 0 
                 ? Math.floor(CookieCount).toLocaleString('en', {useGrouping:true}) + " Cookies"
-                : "You have no cookies. :("
+                : "You have no cookies :("
             }
             </span>
             <span className="cookie-text" style={{fontSize:"2rem"}}>{roundNumber(CPS)} CPS</span>

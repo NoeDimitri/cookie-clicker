@@ -27,11 +27,19 @@ function CookieApp() {
     </CookieProducer>
   );
 
-  function handlePurchaseProducer(producerPurchased, cost){
+  function handlePurchaseProducer(producerId){
     dispatch({
       type: 'producerPurchase',
-      producerName: producerPurchased,
-      cost: cost
+      producerId: producerId
+    });
+  }
+
+  function handleMultiplerProduce(producerId, multiplier)
+  {
+    dispatch({
+      type: 'increaseMultiplier',
+      producerId: producerId,
+      multiplier: multiplier
     });
   }
 
@@ -45,14 +53,14 @@ function CookieApp() {
 
   // Every cookie update, update what upgrades you can purchase
   useEffect(() => {
-    let newSet = availableUpgrades;
+    let newSet = new Set();
     upgradeInfo.forEach(upgrade => {
       if(!upgrades.has(upgrade.id) && CookieCount >= upgrade.cookieThreshold){
         newSet.add(upgrade.id)
       }
     });
     setAvailableUpgrades(newSet);
-  }, [CookieCount, upgrades, availableUpgrades])
+  }, [CookieCount, upgrades])
 
   //#region saving_loading
 
@@ -132,7 +140,10 @@ function CookieApp() {
             <Cookie CPS={calculateCPS(Producers)}></Cookie>
           </div>
           <div id="upgrade-box">
-            <UpgradeContainer upgradeList={availableUpgrades}></UpgradeContainer>
+            <UpgradeContainer 
+              upgradeList={availableUpgrades}
+              updateMultiplier={handleMultiplerProduce}>
+            </UpgradeContainer>
           </div>
           <div id="producer-box">
             {producerList}
