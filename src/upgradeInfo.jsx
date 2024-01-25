@@ -19,7 +19,7 @@ export const upgradeInfo = [
         multiplier: 0.5,
         srcImage: "PLACEHOLDER",
         cookieThreshold: 6,
-        price: 5000
+        price: 100
     },
     {
         id: 2,

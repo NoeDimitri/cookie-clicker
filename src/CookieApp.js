@@ -122,7 +122,7 @@ function CookieApp() {
       localStorage.setItem("producerSave", JSON.stringify(producerSave));
       localStorage.setItem("purchasedUpgrades", JSON.stringify([...upgrades]));
       localStorage.setItem("previousDate", JSON.stringify(Date.now()));
-      localStorage.setItem("version", JSON.stringify("1.01"));
+      localStorage.setItem("version", JSON.stringify(version));
     }
     window.addEventListener("beforeunload", saveState);
   })

@@ -15,9 +15,10 @@
 #upgrade-container{
     display: flex;
     flex-flow: row wrap;
-    align-items: flex-start;
+    justify-content: flex-start;
     gap: 0.5rem 0.5rem;
     margin: 1rem 3rem;
+    flex-grow: 1;
 }
 
 .upgrade-box{
@@ -30,23 +31,31 @@
     transition: background-color 0.3s, scale 0.1s;
 }
 
-#upgrade-image{
+.upgrade-image{
     height: 2rem;
     width: 2rem;
     transition: opacity 0.3s;
 }
 
-.upgrade-box:hover{
+.upgrade-image.not-purchasable{
+    opacity: 50%;
+}
+
+.upgrade-box.not-purchasable{
+    background-color: rgba(229,229,229, 0.85);
+}
+  
+
+.upgrade-box.purchasable:hover{
     background-color: #6461A0;
     cursor: pointer;
 }
 
-.upgrade-box:active{
+.upgrade-box.purchasable:active{
     transform: scale(103%);
   }
 
-
-.upgrade-box:hover #upgrade-image{
+.upgrade-box.purchasable:hover .upgrade-image{
     opacity: 50%;
 }
 

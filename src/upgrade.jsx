@@ -8,6 +8,17 @@ function Upgrade({upgradeInfo, updateMultiplier}){
     const {upgrades, setUpgrades} = useContext(PurchasedUpgrades)
     const {CookieCount, setCookie} = useContext(NumCookiesContext)
 
+    let upgradeClass = 'upgrade-box';
+    let imageClass = 'upgrade-image';
+
+    if(CookieCount >= upgradeInfo.price){
+        upgradeClass += ' purchasable';
+    }
+    else{
+        upgradeClass += ' not-purchasable';
+        imageClass += ' not-purchasable';
+    }
+
     function purchaseUpgrade(event){
         if(CookieCount >= upgradeInfo.price)
         {
@@ -20,8 +31,8 @@ function Upgrade({upgradeInfo, updateMultiplier}){
     }
 
     return(
-        <div className="upgrade-box" onClick={purchaseUpgrade}>
-            <Image draggable={false} id="upgrade-image" src={require(".//images/cookie.png")}/>
+        <div className={upgradeClass} onClick={purchaseUpgrade}>
+            <Image draggable={false} className={imageClass} src={require(".//images/cookie.png")}/>
             <div id="popup-content">
                 <div id="upgrade-popup-name">
                     <b>{upgradeInfo.name}</b>

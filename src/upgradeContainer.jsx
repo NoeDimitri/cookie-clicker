@@ -14,7 +14,7 @@ function UpgradeContainer({upgradeList, updateMultiplier}){
             </Upgrade>);
     return(
         <div id="upgrade-parent">
-            <div id="upgrade-title">Upgrades!!</div>
+        <div id="upgrade-title">Upgrades!!</div>
             <div id="upgrade-container">
                 {upgradeBoxes}
             </div>

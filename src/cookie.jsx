@@ -21,7 +21,7 @@ function Cookie({CPS}){
             }
             </span>
             <span className="cookie-text" style={{fontSize:"2rem"}}>{roundNumber(CPS)} CPS</span>
-            <div style={{padding:"3rem"}} className="animation-rotate">
+            <div style={{padding:"3rem"}} className="animation-rotate selectDisable">
                 <Image onClick={() => setCookie(CookieCount + 1)} draggable={false} id="cookie-image" src={require(".//images/cookie.png")}/>
             </div>
         </div>
