@@ -13,7 +13,7 @@ function UpgradeContainer({upgradeList}){
             </Upgrade>);
     return(
         <div id="upgrade-parent">
-            <div>Upgrades!!</div>
+            <div id="upgrade-title">Upgrades!!</div>
             <div id="upgrade-container">
                 {upgradeBoxes}
             </div>

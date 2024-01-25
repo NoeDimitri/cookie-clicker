@@ -1,3 +1,8 @@
+#upgrade-title{
+    color: #507DBC;
+    font-size: 1.5rem;
+}
+
 
 #upgrade-parent{
     display: flex;
@@ -47,19 +52,42 @@
     transform: translate(0, 0px);
     padding: 1rem;
     background-color: #507DBC;
+    color: white;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-    width: auto;
+    width: 15rem;
     left: -200px;
+
+    display: grid;
+    gap: 0.25rem 0.25rem;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas:    "upgrade-name upgrade-name upgrade-cost"
+                            "description description description"
+                            "flavor flavor flavor";
 }
 
 .upgrade-box:hover #popup-content{
     z-index: 10;
     opacity: 1;
     visibility: visible;
-    transform: translate(-30px, 0px);
+    transform: translate(-6rem, 0px);
     transition: all 0.5s cubic-bezier(0.75, -0.02, 0.2, 0.97);
 }
 
-#popup-info{
-    text-align: center;
+#upgrade-popup-name {
+    grid-area: upgrade-name;
+}
+
+#upgrade-popup-cost {
+    grid-area: upgrade-cost;
+    text-align: end;
+}
+
+#upgrade-popup-description {
+    grid-area: description;
+}
+
+#upgrade-popup-flavor {
+    grid-area: flavor;
+    opacity: 50%;
 }

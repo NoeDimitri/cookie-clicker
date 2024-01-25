@@ -1,8 +1,9 @@
 export const upgradeInfo = [
     {
         id: 0,
-        name: "upgraded clickers",
-        description: "we upgraded yo clickers",
+        name: "epic clickers",
+        description: "Multiplies clicker efficiency by 50%",
+        flavor: "we upgraded yo clickers",
         relatedProducer: 0,
         multiplier: 0.5,
         srcImage: "PLACEHOLDER",
@@ -12,7 +13,8 @@ export const upgradeInfo = [
     {
         id: 1,
         name: "silly ovens",
-        description: "Theyre so silly!! lol",
+        description: "Multiplies oven efficiency by 50%",
+        flavor: "They're so silly! lol",
         relatedProducer: 1,
         multiplier: 0.5,
         srcImage: "PLACEHOLDER",
@@ -22,7 +24,8 @@ export const upgradeInfo = [
     {
         id: 2,
         name: "slave labor",
-        description: ":000",
+        description: "Multiplies factory efficiency by 50%",
+        flavor: ":000",
         relatedProducer: 2,
         multiplier: 0.5,
         srcImage: "PLACEHOLDER",

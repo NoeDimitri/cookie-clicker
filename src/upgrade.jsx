@@ -7,9 +7,18 @@ function Upgrade({upgradeInfo}){
         <div class="upgrade-box">
             <Image draggable={false} id="upgrade-image" src={require(".//images/cookie.png")}/>
             <div id="popup-content">
-                <p id="popup-info">
-                    put upgrade info here lol
-                </p>
+                <div id="upgrade-popup-name">
+                    <b>{upgradeInfo.name}</b>
+                </div>
+                <div id="upgrade-popup-cost">
+                    {upgradeInfo.price}
+                </div>
+                <div id="upgrade-popup-description">
+                    {upgradeInfo.description}
+                </div>
+                <div id="upgrade-popup-flavor">
+                    {upgradeInfo.flavor}
+                </div>
             </div>
         </div>
     );
