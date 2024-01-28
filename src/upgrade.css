@@ -1,0 +1,107 @@
+#upgrade-title{
+    color: #507DBC;
+    font-size: 1.5rem;
+}
+
+
+#upgrade-parent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem 0.5rem;
+    margin-top: 1rem;
+}
+
+#upgrade-container{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    gap: 0.5rem 0.5rem;
+    margin: 1rem 3rem;
+    flex-grow: 1;
+}
+
+.upgrade-box{
+    position: relative;
+    display: flex;
+    background-color: #F9B9B7;
+    align-items: center;
+    justify-content: center;    
+    padding: 0.5rem 0.5rem;
+    transition: background-color 0.3s, scale 0.1s;
+}
+
+.upgrade-image{
+    height: 2rem;
+    width: 2rem;
+    transition: opacity 0.3s;
+}
+
+.upgrade-image.not-purchasable{
+    opacity: 50%;
+}
+
+.upgrade-box.not-purchasable{
+    background-color: rgba(229,229,229, 0.85);
+}
+  
+
+.upgrade-box.purchasable:hover{
+    background-color: #6461A0;
+    cursor: pointer;
+}
+
+.upgrade-box.purchasable:active{
+    transform: scale(103%);
+  }
+
+.upgrade-box.purchasable:hover .upgrade-image{
+    opacity: 50%;
+}
+
+#popup-content {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    transform: translate(0, 0px);
+    padding: 1rem;
+    background-color: #507DBC;
+    color: white;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    width: 15rem;
+    left: -200px;
+
+    display: grid;
+    gap: 0.25rem 0.25rem;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas:    "upgrade-name upgrade-name upgrade-cost"
+                            "description description description"
+                            "flavor flavor flavor";
+}
+
+.upgrade-box:hover #popup-content{
+    z-index: 10;
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-6rem, 0px);
+    transition: all 0.5s cubic-bezier(0.75, -0.02, 0.2, 0.97);
+}
+
+#upgrade-popup-name {
+    grid-area: upgrade-name;
+}
+
+#upgrade-popup-cost {
+    grid-area: upgrade-cost;
+    text-align: end;
+}
+
+#upgrade-popup-description {
+    grid-area: description;
+}
+
+#upgrade-popup-flavor {
+    grid-area: flavor;
+    opacity: 50%;
+}

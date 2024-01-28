@@ -1,13 +1,18 @@
 import './App.css';
-// import { useState } from 'react';
+import './cookieProducer.css';
+import { useContext } from 'react';
+import { NumCookiesContext } from './CookieApp';
 
-function CookieProducer({Producer, NumCookies, CookieDecrease, CPSModify}){
+function CookieProducer({Producer, CPSModify}){
     
+    const {CookieCount, setCookie} = useContext(NumCookiesContext)
+
+
     let producerClass = "producer-container"
 
     let current_price = Math.ceil(Producer.basePrice * 1.15 ** Producer.quantity);
 
-    if (NumCookies >= current_price)
+    if (CookieCount >= current_price)
     {
         producerClass += " purchasable"
     }
@@ -17,10 +22,10 @@ function CookieProducer({Producer, NumCookies, CookieDecrease, CPSModify}){
     }
 
     function purchaseProducer(event){
-        if (NumCookies >= current_price)
+        if (CookieCount >= current_price)
         {
-            CookieDecrease(NumCookies - current_price);
-            CPSModify(Producer.name);
+            setCookie(CookieCount - current_price);
+            CPSModify(Producer.id);
         }
     };
 
@@ -31,7 +36,7 @@ function CookieProducer({Producer, NumCookies, CookieDecrease, CPSModify}){
                     {Producer.name}
                 </div>
                 <div className="producer-info-child">
-                    Price: {current_price}
+                    Price: {current_price.toLocaleString('en', {useGrouping:true})}
                 </div>
                 <div className="producer-info-child" style={{textAlign:"right"}}>
                     {Producer.quantity}
