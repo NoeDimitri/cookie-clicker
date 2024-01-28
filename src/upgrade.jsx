@@ -32,7 +32,7 @@ function Upgrade({upgradeInfo, updateMultiplier}){
 
     return(
         <div className={upgradeClass} onClick={purchaseUpgrade}>
-            <Image draggable={false} className={imageClass} src={require(".//images/cookie.png")}/>
+            <Image draggable={false} className={imageClass} src={process.env.PUBLIC_URL + upgradeInfo.srcImage}/>
             <div id="popup-content">
                 <div id="upgrade-popup-name">
                     <b>{upgradeInfo.name}</b>

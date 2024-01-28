@@ -16,7 +16,7 @@ function CookieApp() {
   const [upgrades, setUpgrades] = useState(new Set());
   const [availableUpgrades, setAvailableUpgrades] = useState(new Set());
 
-  const version = "1.02";
+  const version = "1.01";
   const CPSRefreshRate = 100;
 
   var producerList = Producers.map(producer => 
