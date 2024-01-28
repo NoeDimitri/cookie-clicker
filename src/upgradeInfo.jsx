@@ -17,7 +17,7 @@ export const upgradeInfo = [
         flavor: "They're so silly! lol",
         relatedProducer: 1,
         multiplier: 2.0,
-        srcImage: "/images/cookie.png",
+        srcImage: "/images/fire_sprite.png",
         cookieThreshold: 100,
         price: 1000
     },
@@ -50,7 +50,7 @@ export const upgradeInfo = [
         flavor: ":000",
         relatedProducer: 4,
         multiplier: 2.0,
-        srcImage: "/images/eggdog.png",
+        srcImage: "/images/eggdog.jpg",
         cookieThreshold: 130000,
         price: 1300000
     },
